@@ -55,5 +55,10 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
+  # Este parte del test es para corregir el erro de tener dos browsers con secion iniciada y dalr log_out a uno de ellos, previene el otro browser cierre secion incorrectamente dejando abrierto el acceso a la base de datos.
+  test "authenticated? should return false for a user with nil digest" do
+    assert_not @user.authenticated?('')
+  end
+
 
 end
