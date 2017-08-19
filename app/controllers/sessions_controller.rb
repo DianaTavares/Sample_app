@@ -8,8 +8,7 @@ class SessionsController < ApplicationController
       log_in user
       #operador ternario que guarda la informacion del usuario en una cookie permanente para recordad al usuario en el borwser si el asi lo decea seleccionando la remember_me check_box
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      remember user
-      redirect_to user
+      redirect_back_or user
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
